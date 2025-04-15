@@ -30,20 +30,20 @@ modules:
     buildsystem: simple
     sources:
       - type: file
-        url: https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/1.9.0/SoulFire_1.9.0_amd64.deb
-        sha256: 6d0ffb04f5c30db2aa7b54e9d5a585d5b6e45229b3bf3a7c1583a8895f66afc6
+        url: https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/1.10.4/soulfire_1.10.4_amd64.deb
+        sha256: c01e4fa8c5168fa35d2d64548f9a1d1f38eb04d858391a08e52dc8c41f66090a
         only-arches: [x86_64]
         dest-filename: soulfire.deb
       - type: file
-        url: https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/1.9.0/SoulFire_1.9.0_amd64.deb
-        sha256: 6d0ffb04f5c30db2aa7b54e9d5a585d5b6e45229b3bf3a7c1583a8895f66afc6
+        url: https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/1.10.4/soulfire_1.10.4_arm64.deb
+        sha256: 6228200912b42717a30de068fd2aef6c9cc6df64ba524cbf1c318524f50a8ec0
         only-arches: [aarch64]
         dest-filename: soulfire.deb
     build-commands:
       - bsdtar -Oxf soulfire.deb 'data.tar.gz' | bsdtar -xf -
       - install -Dm755 usr/bin/soulfire /app/bin/soulfire
-      - desktop-file-edit --set-icon=com.soulfiremc.soulfire usr/share/applications/SoulFire.desktop
-      - install -Dm644 usr/share/applications/SoulFire.desktop /app/share/applications/com.soulfiremc.soulfire.desktop
+      - desktop-file-edit --set-icon=com.soulfiremc.soulfire usr/share/applications/soulfire.desktop
+      - install -Dm644 usr/share/applications/soulfire.desktop /app/share/applications/com.soulfiremc.soulfire.desktop
       - install -Dm644 usr/share/icons/hicolor/128x128/apps/soulfire.png /app/share/icons/hicolor/128x128/apps/com.soulfiremc.soulfire.png
       - install -Dm644 usr/share/icons/hicolor/32x32/apps/soulfire.png /app/share/icons/hicolor/32x32/apps/com.soulfiremc.soulfire.png
       - install -Dm644 usr/share/icons/hicolor/256x256@2/apps/soulfire.png /app/share/icons/hicolor/256x256@2/apps/com.soulfiremc.soulfire.png

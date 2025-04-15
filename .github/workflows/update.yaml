@@ -22,8 +22,8 @@ jobs:
 
       - name: Download .debs
         run: |
-          AMD64_URL="https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/${RELEASE_TAG}/SoulFire_${RELEASE_TAG}_amd64.deb"
-          AARCH64_URL="https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/${RELEASE_TAG}/SoulFire_${RELEASE_TAG}_aarch64.deb"
+          AMD64_URL="https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/${RELEASE_TAG}/soulfire_${RELEASE_TAG}_amd64.deb"
+          AARCH64_URL="https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/${RELEASE_TAG}/soulfire_${RELEASE_TAG}_arm64.deb"
           wget "$AMD64_URL" -O soulfire_amd64.deb
           wget "$AARCH64_URL" -O soulfire_aarch64.deb
           echo "AMD64_URL=$AMD64_URL" >> $GITHUB_ENV
@@ -39,11 +39,11 @@ jobs:
 
       - name: Update manifest
         run: |
-          FILE="flathub/com.soulfiremc.soulfire.yaml"
+          FILE="com.soulfiremc.soulfire.yaml"
           sed -i "s|url: .*amd64.deb|url: $AMD64_URL|" "$FILE"
           sed -i "s|sha256: .*|sha256: ${{ steps.hashes.outputs.sha_amd64 }}|" "$FILE"
 
-          sed -i "s|url: .*aarch64.deb|url: $AARCH64_URL|" "$FILE"
+          sed -i "s|url: .*arm64.deb|url: $AARCH64_URL|" "$FILE"
           sed -i "0,/sha256: .*/s//sha256: ${{ steps.hashes.outputs.sha_aarch64 }}/" "$FILE"
 
       - name: Create Pull Request
