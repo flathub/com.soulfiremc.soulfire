@@ -31,7 +31,7 @@ modules:
     sources:
       - type: file
         url: https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/1.10.4/soulfire_1.10.4_amd64.deb
-        sha256: c01e4fa8c5168fa35d2d64548f9a1d1f38eb04d858391a08e52dc8c41f66090a
+        sha256: 6228200912b42717a30de068fd2aef6c9cc6df64ba524cbf1c318524f50a8ec0
         only-arches: [x86_64]
         dest-filename: soulfire.deb
       - type: file
