@@ -39,7 +39,7 @@ jobs:
 
       - name: Update manifest
         run: |
-          FILE="com.soulfiremc.soulfire.yaml"
+          FILE="com.soulfiremc.soulfire.yml"
           sed -i "s|url: .*amd64.deb|url: $AMD64_URL|" "$FILE"
           sed -i "s|sha256: .*|sha256: ${{ steps.hashes.outputs.sha_amd64 }}|" "$FILE"
 
