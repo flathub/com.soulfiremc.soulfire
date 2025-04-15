@@ -34,6 +34,11 @@ modules:
         sha256: 6d0ffb04f5c30db2aa7b54e9d5a585d5b6e45229b3bf3a7c1583a8895f66afc6
         only-arches: [x86_64]
         dest-filename: soulfire.deb
+      - type: file
+        url: https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/1.9.0/SoulFire_1.9.0_amd64.deb
+        sha256: 6d0ffb04f5c30db2aa7b54e9d5a585d5b6e45229b3bf3a7c1583a8895f66afc6
+        only-arches: [aarch64]
+        dest-filename: soulfire.deb
     build-commands:
       - bsdtar -Oxf soulfire.deb 'data.tar.gz' | bsdtar -xf -
       - install -Dm755 usr/bin/soulfire /app/bin/soulfire
