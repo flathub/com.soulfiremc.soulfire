@@ -41,10 +41,10 @@ jobs:
         run: |
           FILE="com.soulfiremc.soulfire.yml"
           sed -i "s|url: .*amd64.deb|url: $AMD64_URL|" "$FILE"
-          sed -i "0,/sha256: .*/s//sha256: ${{ steps.hashes.outputs.sha_amd64 }}/" "$FILE"
-
           sed -i "s|url: .*arm64.deb|url: $AARCH64_URL|" "$FILE"
-          sed -i "1,/sha256: .*/s/sha256: .*/sha256: ${{ steps.hashes.outputs.sha_aarch64 }}/" "$FILE"
+          
+          sed -i "s|sha256: .*|sha256: ${{ steps.hashes.outputs.sha_aarch64 }}|" "$FILE"
+          sed -i "0,/sha256: .*/s//sha256: ${{ steps.hashes.outputs.sha_amd64 }}/" "$FILE"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
