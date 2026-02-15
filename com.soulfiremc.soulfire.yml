@@ -30,13 +30,13 @@ modules:
     buildsystem: simple
     sources:
       - type: file
-        url: https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/2.4.3/soulfire_2.4.3_amd64.deb
-        sha256: 796c37eea940caf16022a17028310a31641acba55519c512a72c79371f512536
+        url: https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/2.4.4/soulfire_2.4.4_amd64.deb
+        sha256: 0e3048c6f069110d4feecf7d1c109e2ba513701a9026200daab18da57ea2db05
         only-arches: [x86_64]
         dest-filename: soulfire.deb
       - type: file
-        url: https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/2.4.3/soulfire_2.4.3_arm64.deb
-        sha256: 3e79a8c3e2710cb00922da78cf203d217c9edabc02b92238ef17ad3bf659ee22
+        url: https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/2.4.4/soulfire_2.4.4_arm64.deb
+        sha256: 4703df065613dc6a90f565722e16fbf1fcab05ed439753eaacd1f38496bbe4d0
         only-arches: [aarch64]
         dest-filename: soulfire.deb
     build-commands:
