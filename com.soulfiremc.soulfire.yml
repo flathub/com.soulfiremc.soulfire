@@ -1,18 +1,24 @@
 id: com.soulfiremc.soulfire
 
-runtime: org.gnome.Platform
-runtime-version: '49'
-sdk: org.gnome.Sdk
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+base: org.electronjs.Electron2.BaseApp
+base-version: '25.08'
 
 command: soulfire
+separate-locales: false
 finish-args:
+  - --share=ipc
   - --socket=wayland
   - --socket=fallback-x11
   - --device=dri
-  - --share=ipc
+  - --socket=pulseaudio
   - --share=network
-  # See https://github.com/tauri-apps/tauri/issues/9304
-  - --env=WEBKIT_DISABLE_DMABUF_RENDERER=1
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=com.canonical.Unity
+  - --env=ELECTRON_TRASH=gio
+  - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
   # for Discord RPC mods
   - --filesystem=xdg-run/app/com.discordapp.Discord:create
   # Profile drag&drop
@@ -25,26 +31,32 @@ finish-args:
   - --filesystem=/sys/kernel/mm/transparent_hugepage:ro
 
 modules:
-  - shared-modules/libayatana-appindicator/libayatana-appindicator-gtk3.json
   - name: soulfire
     buildsystem: simple
     sources:
       - type: file
-        url: https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/2.7.0/soulfire_2.7.0_amd64.deb
-        sha256: d0c877ed14513d15f2e04e6a3fe0321c5b76c545ba3c5d5bba19f9bcdcac29a6
+        url: https://github.com/soulfiremc-com/SoulFireClient/releases/download/2.8.6/SoulFire-2.8.6-amd64.deb
+        sha256: c8911490144fa7a9942a8579cd185c3ac60b2a89fe714995eb56a69c6d5a4df5
         only-arches: [x86_64]
         dest-filename: soulfire.deb
       - type: file
-        url: https://github.com/AlexProgrammerDE/SoulFireClient/releases/download/2.7.0/soulfire_2.7.0_arm64.deb
-        sha256: 5c7841eb2dc0b7e8cb23c2bd251d458bc562b38c94f511774e7c21117e555e67
+        url: https://github.com/soulfiremc-com/SoulFireClient/releases/download/2.8.6/SoulFire-2.8.6-arm64.deb
+        sha256: c3ea9543ab8c1e4cb0f406bfcf0920e5a222dcf74b53253ae8e0a674de5d285b
         only-arches: [aarch64]
         dest-filename: soulfire.deb
+      - type: file
+        url: https://raw.githubusercontent.com/soulfiremc-com/SoulFireClient/2.8.6/com.soulfiremc.soulfire.metainfo.xml
+        sha256: 88ee918ce43937aa67be1028681db07f6dfc3b19559173c80d4b133144fac924
+      - type: script
+        dest-filename: soulfire
+        commands:
+          - zypak-wrapper.sh /app/SoulFire/soulfire --ozone-platform-hint=auto "$@"
     build-commands:
-      - bsdtar -Oxf soulfire.deb 'data.tar.gz' | bsdtar -xf -
-      - install -Dm755 usr/bin/soulfire /app/bin/soulfire
-      - desktop-file-edit --set-icon=com.soulfiremc.soulfire usr/share/applications/soulfire.desktop
+      - bsdtar -Oxf soulfire.deb "$(bsdtar -tf soulfire.deb | grep '^data.tar')" | bsdtar -xf -
+      - cp -a opt/SoulFire /app/SoulFire
+      - patch-desktop-filename /app/SoulFire/resources/app.asar
+      - install -Dm755 soulfire /app/bin/soulfire
+      - desktop-file-edit --set-key=Exec --set-value='soulfire %U' --set-icon=com.soulfiremc.soulfire usr/share/applications/soulfire.desktop
       - install -Dm644 usr/share/applications/soulfire.desktop /app/share/applications/com.soulfiremc.soulfire.desktop
-      - install -Dm644 usr/share/icons/hicolor/128x128/apps/soulfire.png /app/share/icons/hicolor/128x128/apps/com.soulfiremc.soulfire.png
-      - install -Dm644 usr/share/icons/hicolor/32x32/apps/soulfire.png /app/share/icons/hicolor/32x32/apps/com.soulfiremc.soulfire.png
-      - install -Dm644 usr/share/icons/hicolor/256x256@2/apps/soulfire.png /app/share/icons/hicolor/256x256@2/apps/com.soulfiremc.soulfire.png
-      - install -Dm644 usr/share/metainfo/com.soulfiremc.soulfire.metainfo.xml /app/share/metainfo/com.soulfiremc.soulfire.metainfo.xml
+      - install -Dm644 usr/share/icons/hicolor/512x512/apps/soulfire.png /app/share/icons/hicolor/512x512/apps/com.soulfiremc.soulfire.png
+      - install -Dm644 com.soulfiremc.soulfire.metainfo.xml /app/share/metainfo/com.soulfiremc.soulfire.metainfo.xml
