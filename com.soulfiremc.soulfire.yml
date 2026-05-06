@@ -54,7 +54,7 @@ modules:
     build-commands:
       - bsdtar -Oxf soulfire.deb "$(bsdtar -tf soulfire.deb | grep '^data.tar')" | bsdtar -xf -
       - cp -a opt/SoulFire /app/SoulFire
-      - patch-desktop-filename /app/SoulFire/resources/app.asar
+      - patch-electron-desktop-filename /app/SoulFire/resources/app.asar
       - install -Dm755 soulfire /app/bin/soulfire
       - desktop-file-edit --set-key=Exec --set-value='soulfire %U' --set-icon=com.soulfiremc.soulfire usr/share/applications/soulfire.desktop
       - install -Dm644 usr/share/applications/soulfire.desktop /app/share/applications/com.soulfiremc.soulfire.desktop
