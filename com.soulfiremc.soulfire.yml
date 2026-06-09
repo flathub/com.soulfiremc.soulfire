@@ -34,18 +34,18 @@ modules:
     buildsystem: simple
     sources:
       - type: file
-        url: https://github.com/soulfiremc-com/SoulFireClient/releases/download/2.8.7/SoulFire-2.8.7-amd64.deb
-        sha256: a385cc796751fcf7ea7c1ce493a64544129370e9b668f67e5dbce3954d1d057b
+        url: https://github.com/soulfiremc-com/SoulFireClient/releases/download/2.8.8/SoulFire-2.8.8-amd64.deb
+        sha256: ecce824fba89a7339ab7eb9a60ac8f748135a7333bb2a9686d943288608cfca3
         only-arches: [x86_64]
         dest-filename: soulfire.deb
       - type: file
-        url: https://github.com/soulfiremc-com/SoulFireClient/releases/download/2.8.7/SoulFire-2.8.7-arm64.deb
-        sha256: 45c956f8b8899d9786b08d2971f049b53cecf689b109b4ad9bb356c4f95c8f65
+        url: https://github.com/soulfiremc-com/SoulFireClient/releases/download/2.8.8/SoulFire-2.8.8-arm64.deb
+        sha256: b0b9b7c8d3184db2dd9ef63a217b417d4553d7f4c9135cc3b86ed55c7e5ccd52
         only-arches: [aarch64]
         dest-filename: soulfire.deb
       - type: file
-        url: https://raw.githubusercontent.com/soulfiremc-com/SoulFireClient/2.8.7/com.soulfiremc.soulfire.metainfo.xml
-        sha256: 6bae8129d586f62ee2ee17f19f504c2a98ecd72a1beaa376d829f4a6a630f33a
+        url: https://raw.githubusercontent.com/soulfiremc-com/SoulFireClient/2.8.8/com.soulfiremc.soulfire.metainfo.xml
+        sha256: 7f54ff1561670fd37e49e7b3831ab7d1fbd13d31f5f4ff69eb35acbabbaf780c
       - type: script
         dest-filename: soulfire
         commands:
